@@ -5,16 +5,11 @@ import './index.css';
 import App from './App';
 import store from './store';
 
-function Main() {
-  return (
+ReactDOM.render(
+  <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  );
-}
-ReactDOM.render(
-  <React.StrictMode>
-    <Main />
   </React.StrictMode>,
   document.getElementById('root')
 );

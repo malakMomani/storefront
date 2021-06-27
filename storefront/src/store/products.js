@@ -1,13 +1,67 @@
-import { createStore, combineReducers } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+/* eslint-disable import/no-anonymous-default-export */
+let initialState = {
+  products: [
+    {
+      name: 'TV',
+      url: 'https://ochanjang.com/wp-content/uploads/2021/01/6t8Zh249QiFmVnkQdCCtHK.jpg',
+      category: 'electronics',
+      price: Math.random(),
+      description: 'All you need in one place'
+    },
+    {
+      name: 'TV',
+      url: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/screen-shot-2018-03-20-at-7-50-11-am-0-1545168655.png?crop=1.00xw:0.753xh;0,0.139xh&resize=1200:*',
+      category: 'electronics',
+      price: Math.random(),
+      description: 'Travel to another world'
+    },
+    {
+      name: 'Shawrma',
+      url: 'https://images.deliveryhero.io/image/talabat/MenuItems/17DEC20_SHAWARMA_CIT_637495069473469387.jpg',
+      category: 'food',
+      price: Math.random(),
+      description: 'This is the best'
+    },
+    {
+      name: 'Roasted Chicken',
+      url: 'https://www.jocooks.com/wp-content/uploads/2019/06/roast-chicken-1.jpg',
+      category: 'food',
+      price: Math.random(),
+      description: 'yummy'
+    },
+    {
+      name: 'Fizzy Drink',
+      url: 'https://pumpingmarvellous.org/wp-content/uploads/2015/11/fizzy-drinks-linked-to-heart-failure-risk.jpg',
+      category: 'food',
+      price: Math.random(),
+    },
+  ],
+  count: 0,
+};
 
-import categoriesReducer from './categories.js';
-import productsReducer from './products.js';
+export default (state = initialState, action) => {
+  let { type, payload } = action;
 
-let reducers = combineReducers({ categoriesReducer, productsReducer });
+  switch (type) {
+    case 'ACTIVE':
+      let activeCategory = payload;
+      return { ...state, activeCategory };
+    case 'RESET':
+      return initialState;
+    default:
+      return state;
+  }
+};
 
-const store = () => {
-  return createStore(reducers, composeWithDevTools());
-}
+export const activeCat = (categoryName) => {
+  return {
+    type: 'ACTIVE',
+    payload: categoryName,
+  };
+};
 
-export default store();
+export const reset = () => {
+  return {
+    type: 'RESET',
+  };
+};

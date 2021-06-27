@@ -12,7 +12,7 @@ let initialState = {
       description: 'Order delicious meals'
     },
   ],
-  activeCategory: ''
+  activeCategory: 'Electronics'
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
   let { type, payload } = action;
 
   switch (type) {
-    case 'ACTIVE CATEGORY':
+    case 'ACTIVE':
       let activeCategory = payload;
       return { ...state, activeCategory };
 
@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
 
 export const activeCat = (name) => {
   return {
-    type: 'ACTIVE CATEGORY',
+    type: 'ACTIVE',
     payload: name
   }
 }
