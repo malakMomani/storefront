@@ -1,81 +1,84 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
+import {
+  Container,
+  Typography,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Button,
+  makeStyles,
+} from '@material-ui/core/';
+import { useSelector } from 'react-redux';
 
-import { activeCat, reset } from '../store/products.js';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    maxWidth: 345,
+const useStyles = makeStyles((theme) => ({
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardMedia: {
+    paddingTop: '56.25%', // 16:9
+  },
+  cardContent: {
     flexGrow: 1,
-    padding: theme.spacing(2)
   },
 }));
 
-const ActiveProduct = props => {
+const Products = (props) => {
+
+
+  const state = useSelector((state) => {
+  console.log(state,'+++++++++++++++++==');
+
+    return {
+      ProductsList: state.productsReducer.products
+    }
+  });
+
+
   const classes = useStyles();
   return (
-    <section>
-      <ul>
-        {props.productsReducer.products.map(product => {
-          if (product.category === props.categoriesReducer.activeCategory)
-            return (
-              <>
-              <Container maxWidth="md" component="main">
-                <Grid container spacing={2} direction="row" justify="flex-start" alignItems="flex-start">
-                  <Grid item xs={12} spacing={3}>
-                    <Card className={classes.root}>
-                      <CardActionArea>
-                        <CardMedia
-                          component="img"
-                          alt={product.name}
-                          height="140"
-                          image={product.image}
-                          title={product.name}
-                        />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="h2">
-                            {product.name}
-                          </Typography>
-                          <Typography variant="body2" color="textSecondary" component="p">
-                            {product.description}
-                          </Typography>
-                        </CardContent>
-                      </CardActionArea>
-                      <CardActions>
-                        <Button size="small" color="primary">
-                          ADD TO CART
-                    </Button>
-                        <Button size="small" color="primary">
-                          VIEW DETAILS
-                    </Button>
-                      </CardActions>
-                    </Card>
-                  </Grid>
-                </Grid>
-                </Container>
-              </>
-            )
+    <Container className={classes.cardGrid} maxWidth="md">
+      <Grid container spacing={4}>
+        {state.ProductsList.map((product, idx) => {
+          return (
+            <Grid item key={idx} xs={12} sm={6} md={4}>
+              <Card className={classes.card}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={product.url}
+                  title="Image title"
+                />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {product.name}
+                  </Typography>
+                  <Typography>Price: ${product.price}</Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    size="small"
+                    color="primary"
+                  >
+                    ADD TO CART
+                  </Button>
+                  <Button size="small" color="primary">
+                    VIEW DETAILS
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          );
         })}
-      </ul>
-    </section>
-  )
-}
+      </Grid>
+    </Container>
+  );
+};
 
-const mapStateToProps = state => ({
-  catReducer: state.catReducer,
-  prodReducer: state.prodReducer
-})
-
-const mapDispatchToProps = { activeCat, reset }
-
-export default connect(mapStateToProps, mapDispatchToProps)(ActiveProduct);
+export default Products;

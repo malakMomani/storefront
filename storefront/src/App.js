@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
-import Header from './components/Header.js';
-import Footer from './components/Footer.js'
 import Categories from './components/Categories';
-import Products from './components/Products.js'
+import Products from './components/Products';
+
+import Header from './components/Header';
+import Footer from "./components/Footer";
 
 function App() {
   return (

@@ -1,30 +1,32 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles(theme => ({
-  appBar: {
-    backgroundColor: theme.palette.white,
-    color: theme.palette.black,
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
   },
-}))
+  title: {
+    flexGrow: 1,
+  },
+}));
 
-
-function Header() {
-
+export default function ButtonAppBar() {
   const classes = useStyles();
+
   return (
-    <>
-      <AppBar position="fixed" color="inherit">
+    <div className={classes.root}>
+      <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Malak's STORE
+            Malak's Store
           </Typography>
           <Button color="inherit">CART (0)</Button>
         </Toolbar>
       </AppBar>
-    </>
+    </div>
   );
 }
-
-export default Header;

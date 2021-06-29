@@ -1,32 +1,36 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { active } from '../store/categories';
+import { Button, Grid } from '@material-ui/core';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { activeCat, reset } from '../store/categories.js';
+const Categories = (props) => {
 
-
-const ActiveCategory = props => {
-
+  const state = useSelector((state) => {
+    return {
+      categoriesList: state.categoriesReducer.categories
+    }
+  });
+  // this is instead of mapDispatchToProps.
+  const dispatch = useDispatch();
   return (
     <div>
-      <h1 id="category">Browse our Categories</h1>
-      <ul>
-        {props.categoriesReducer.categories.map(category => {
-          return <Button color="primary" onClick={() => props.activeCat(category.name)} key={category.name}>
-            {category.name}
-          </Button>
+      <Grid container spacing={2} justify="center">
+        {state.categoriesList.map((category) => {
+          return (
+            <Grid item key={category.name}>
+              <Button
+                variant="outlined"
+                color="default"
+                onClick={() => dispatch(active(category.name))}
+              >
+                {category.name}
+              </Button>
+            </Grid>
+          );
         })}
-      </ul>
-      <h2 id="activeCategory">{props.categoriesReducer.activeCategory}</h2>
+      </Grid>
+
     </div>
-
   );
-}
+};
 
-const mapStateToProps = state => ({
-  catReducer: state.catReducer
-})
-
-const mapDispatchToProps = { activeCat, reset }
-
-export default connect(mapStateToProps, mapDispatchToProps)(ActiveCategory);
+export default Categories;
