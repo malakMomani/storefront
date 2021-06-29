@@ -1,33 +1,34 @@
 
 export const active = (name) => {
-    return {
-      type: 'ACTIVE',
-      payload: name,
-    };
+  return {
+    type: 'ACTIVE',
+    payload: name,
   };
-  
-  export const increment = (product) => {
-    return {
-      type: 'INCREMENT',
-      payload: product,
-    };
+};
+
+export const increment = (product) => {
+  return {
+    type: 'INCREMENT',
+    payload: product,
   };
-  
-  export const show = (bool) => {
-    return {
-      type: 'SHOW_CART',
-      payload: bool,
-    };
+};
+
+export const add = (product) => {
+  return {
+    type: 'ADD',
+    payload: product,
   };
-  
-  export const decrement = (product) => {
-    return {
-      type: 'DECREMENT',
-      payload: product,
-    };
+}
+
+export const show = (bool) => {
+  return {
+    type: 'SHOW',
+    payload: bool,
   };
-  export const reset = () => {
-    return {
-      type: 'RESET'
-    }
+};
+
+export const reset = () => {
+  return {
+    type: 'RESET'
   }
+}
