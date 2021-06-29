@@ -27,16 +27,3 @@ export default (state = initialState, action) => {
       return state;
   }
 }
-
-export const active = (name) => {
-  return {
-    type: 'ACTIVE',
-    payload: name
-  }
-}
-
-export const reset = () => {
-  return {
-    type: 'RESET'
-  }
-}

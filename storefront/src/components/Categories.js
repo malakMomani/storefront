@@ -1,4 +1,4 @@
-import { active } from '../store/categories';
+import { active } from '../store/actions';
 import { Button, Grid } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 

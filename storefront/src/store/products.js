@@ -52,17 +52,3 @@ export default (state = initialState, action) => {
       return state;
   }
 }
-
-
-export const active = (categoryName) => {
-  return {
-    type: 'ACTIVE',
-    payload: categoryName,
-  };
-};
-
-export const reset = () => {
-  return {
-    type: 'RESET',
-  };
-};
