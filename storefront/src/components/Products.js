@@ -1,5 +1,5 @@
 import React from 'react';
-import { active } from '../store/actions';
+import { add } from '../store/actions';
 import {
   Container,
   Typography,
@@ -11,7 +11,7 @@ import {
   Button,
   makeStyles,
 } from '@material-ui/core/';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -43,6 +43,8 @@ const Products = (props) => {
     }
   });
 
+  let dispatch = useDispatch();
+
 
   const classes = useStyles();
   return (
@@ -70,6 +72,7 @@ const Products = (props) => {
                         <Button
                           size="small"
                           color="primary"
+                          onClick= {()=> dispatch(add(product)) }
                         >
                           ADD TO CART
                         </Button>

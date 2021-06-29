@@ -1,8 +1,21 @@
 import { active } from '../store/actions';
 import { Button, Grid } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
+import Cart from './cart';
+import { Paper } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles';
+
 
 const Categories = (props) => {
+
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      marginTop:5,
+      marginLeft:1150,
+    },
+  }));
+  const classes = useStyles();
 
   const state = useSelector((state) => {
     return {
@@ -27,8 +40,10 @@ const Categories = (props) => {
             </Grid>
           );
         })}
+        <Paper className= {classes.root} elevation={3}>
+          <Cart />
+        </Paper>
       </Grid>
-
     </div>
   );
 };

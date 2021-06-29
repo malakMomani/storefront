@@ -13,6 +13,14 @@ export const increment = (product) => {
   };
 };
 
+export const deleteItem = (product) => {
+  return {
+    type: 'DELETE',
+    payload: product,
+  };
+}
+
+
 export const add = (product) => {
   return {
     type: 'ADD',

@@ -25,6 +25,15 @@ export default (state = initialState, action) => {
         count: state.count,
         show: payload,
       };
+
+    case 'DELETE':
+      const newProducts = state.cart.filter(
+        (product) => product.name !== payload.name
+      );
+      return {
+        cart: newProducts,
+        count: state.count - 1,
+      };
     case 'RESET':
       return initialState;
     default:
