@@ -11,6 +11,8 @@ import {
   makeStyles,
 } from '@material-ui/core/';
 import { useSelector } from 'react-redux';
+import { getRemoteData } from '../store/actions';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -33,9 +35,14 @@ const useStyles = makeStyles((theme) => ({
 const Products = (props) => {
 
 
-  const state = useSelector((state) => {
-  console.log(state,'+++++++++++++++++==');
 
+
+  useEffect(() => {
+    console.log('use Effect');
+    getRemoteData();
+  }, []);
+
+  const state = useSelector((state) => {
     return {
       ProductsList: state.productsReducer.products
     }

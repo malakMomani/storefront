@@ -2,13 +2,13 @@ import superagent from 'superagent';
 
 const api = 'https://api-server-0.herokuapp.com/products';
 
-export const getRemoteData = () => async (dispatch, state) => {
+export const getRemoteData = () => (dispatch, state) => {
   // 1- get the remote data with superagent
   // 2- then dispatch an action with the response after we get it.
   console.log("inside getRemoteData");
   console.log(dispatch);
   console.log(state)
-  return await superagent.get(api).then(res => {
+  return superagent.get(api).then(res => {
     dispatch(getAction(res.body));
   });
 }
