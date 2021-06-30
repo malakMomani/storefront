@@ -37,7 +37,7 @@ function Cart() {
           if(state.show)
           return (
             <ListItem>
-              <ListItemText primary={item.name} />
+              <ListItemText primary={item.item} />
               <ListItemIcon button onClick={()=> dispatch(deleteItem(item))}>
                 <DeleteIcon />
               </ListItemIcon>

@@ -5,6 +5,11 @@ let initialState = {
   }, {
     name: 'FOOD',
     description: 'Order delicious meals'
+  }, {
+    name: 'JEWELERY',
+    description:'beauty'
+  }, {
+    name:'MEN\'S CLOTHING'
   }
   ],
   activeCategory: 'electronics'

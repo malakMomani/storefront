@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
 
     case 'DELETE':
       const newProducts = state.cart.filter(
-        (product) => product.name !== payload.name
+        (product) => product.item !== payload.item
       );
       return {
         cart: newProducts,

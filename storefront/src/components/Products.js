@@ -11,7 +11,9 @@ import {
   Button,
   makeStyles,
 } from '@material-ui/core/';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getRemoteData } from '../store/actions';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -35,8 +37,6 @@ const Products = (props) => {
 
 
   const state = useSelector((state) => {
-    console.log(state, '+++++++++++++++++==');
-
     return {
       ProductsList: state.productsReducer.products,
       reducer: state.categoriesReducer
@@ -45,6 +45,10 @@ const Products = (props) => {
 
   let dispatch = useDispatch();
 
+  useEffect(() => {
+    console.log('use Effect');
+    dispatch(getRemoteData());
+  }, [dispatch]);
 
   const classes = useStyles();
   return (
@@ -59,12 +63,12 @@ const Products = (props) => {
                     <Card className={classes.card}>
                       <CardMedia
                         className={classes.cardMedia}
-                        image={product.url}
+                        image={product.image}
                         title="Image title"
                       />
                       <CardContent className={classes.cardContent}>
                         <Typography gutterBottom variant="h5" component="h2">
-                          {product.name}
+                          {product.item}
                         </Typography>
                         <Typography>Price: ${product.price}</Typography>
                       </CardContent>
@@ -72,7 +76,7 @@ const Products = (props) => {
                         <Button
                           size="small"
                           color="primary"
-                          onClick= {()=> dispatch(add(product)) }
+                          onClick={() => dispatch(add(product))}
                         >
                           ADD TO CART
                         </Button>
@@ -83,7 +87,7 @@ const Products = (props) => {
                     </Card>
                   </Grid>
                 );
-                else return null;
+              else return null;
             })}
           </Grid>
         </Container>
