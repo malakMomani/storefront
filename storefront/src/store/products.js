@@ -49,7 +49,13 @@ export default (state = initialState, action) => {
   let { type, payload } = action;
   switch (type) {
     case 'GET':
-      return { products: payload, display: state.display };
+      let arr = [...state.products, ...payload]
+      return {
+          products: arr,
+          show: state.show,
+          active: state.active
+      }
+    
     case 'ACTIVE':
       let active = payload;
       return { ...state, active };

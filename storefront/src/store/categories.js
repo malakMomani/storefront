@@ -5,9 +5,14 @@ let initialState = {
   }, {
     name: 'FOOD',
     description: 'Order delicious meals'
+  }, {
+    name: 'JEWELERY',
+    description:'beauty'
+  }, {
+    name:'MEN\'S CLOTHING'
   }
   ],
-  activeCategory: 'ELECTRONICS'
+  activeCategory: 'electronics'
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -15,12 +20,8 @@ export default (state = initialState, action) => {
   let { type, payload } = action;
   switch (type) {
     case 'ACTIVE':
-      return state.categories.map(category => {
-        if (category.name === payload) {
-          return { name: category.name, description: category.description }
-        }
-        return category;
-      });
+      let activeCategory = payload.toLowerCase();
+      return { ...state, activeCategory };
     case 'RESET':
       return initialState;
     default:

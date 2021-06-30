@@ -35,19 +35,28 @@ export const increment = (product) => {
   };
 };
 
+export const deleteItem = (product) => {
+  return {
+    type: 'DELETE',
+    payload: product,
+  };
+}
+
+
+export const add = (product) => {
+  return {
+    type: 'ADD',
+    payload: product,
+  };
+}
+
 export const show = (bool) => {
   return {
-    type: 'SHOW_CART',
+    type: 'SHOW',
     payload: bool,
   };
 };
 
-export const decrement = (product) => {
-  return {
-    type: 'DECREMENT',
-    payload: product,
-  };
-};
 export const reset = () => {
   return {
     type: 'RESET'
